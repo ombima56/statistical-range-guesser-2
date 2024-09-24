@@ -34,3 +34,19 @@ func average(data []float64) float64 {
 
 	return sum / float64(n)
 }
+
+func variance(data []float64) (varianceVal float64) {
+	n := len(data)
+
+	av := average(data)
+
+	var sqrDiffSUm float64
+	for _, val := range data {
+		diff := val - av
+		sqrDiffSUm += diff * diff
+	}
+
+	varianceVal = sqrDiffSUm / float64(n)
+	
+	return
+}
