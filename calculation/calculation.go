@@ -1,5 +1,6 @@
 package calculation
 
+import "math"
 
 func LinearRegression(data []float64) (slope, intercept float64) {
 	num := float64(len(data))
@@ -47,6 +48,11 @@ func variance(data []float64) (varianceVal float64) {
 	}
 
 	varianceVal = sqrDiffSUm / float64(n)
-	
+
 	return
+}
+
+func StandardDeviation(data []float64) float64 {
+	v := variance(data)
+	return math.Sqrt(v)
 }
