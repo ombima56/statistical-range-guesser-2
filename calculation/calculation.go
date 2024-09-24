@@ -19,3 +19,18 @@ func LinearRegression(data []float64) (slope, intercept float64) {
 	intercept = (sumY - slope*sumX) / num
 	return
 }
+
+func average(data []float64) float64 {
+	n := len(data)
+
+	if n == 0 {
+		return 0
+	}
+
+	var sum float64
+	for _, val := range data {
+		sum += val
+	}
+
+	return sum / float64(n)
+}
