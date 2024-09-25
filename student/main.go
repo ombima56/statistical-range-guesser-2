@@ -35,7 +35,7 @@ func main() {
 		predictedValue := slope*nextX + intercept
 
 		lowerLimit := predictedValue - 2*calculation.StandardDeviation(data)
-		upperLimit := predictedValue - 2*calculation.StandardDeviation(data)
+		upperLimit := predictedValue + 2*calculation.StandardDeviation(data)
 
 		fmt.Printf("%.0f %0.f\n", lowerLimit, upperLimit)
 
