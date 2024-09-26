@@ -133,3 +133,46 @@ func TestVariance(t *testing.T) {
 func almostEqual(a, b float64) bool {
 	return math.Abs(a-b) < 1e-9
 }
+
+func TestStandardDeviation(t *testing.T) {
+	tests := []struct {
+		name string
+		data []float64
+		expected float64
+	}{
+		{
+			name: "Standard deviation of multiple positive numbers",
+			data:  []float64{1.0, 2.0, 3.0, 4.0, 5.0},
+			expected: math.Sqrt(2.0),
+		},
+		{
+			name:     "Standard deviation of multiple negative numbers",
+			data:     []float64{-1.0, -2.0, -3.0, -4.0, -5.0},
+			expected: math.Sqrt(2.0),
+		},
+		{
+			name:     "Standard deviation of a mix of positive and negative numbers",
+			data:     []float64{-1.0, 1.0, -1.0, 1.0},
+			expected: math.Sqrt(1.0),
+		},
+		{
+			name:     "Standard deviation of a single number",
+			data:     []float64{10.0},
+			expected: 0.0,
+		},
+		{
+			name:     "Standard deviation of empty data",
+			data:     []float64{},
+			expected: 0.0,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			result := calculation.StandardDeviation(test.data)
+			if math.Abs(result-test.expected) > 1e-9 {
+				t.Errorf("got %v, want %v", result, test.expected)
+			}
+		})
+	}
+}
