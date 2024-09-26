@@ -39,6 +39,9 @@ func Average(data []float64) float64 {
 func Variance(data []float64) (varianceVal float64) {
 	n := len(data)
 
+	if n == 0 {
+		return 0.0
+	}
 	av := Average(data)
 
 	var sqrDiffSUm float64
