@@ -123,15 +123,11 @@ func TestVariance(t *testing.T) {
 	for _, test := range tests {
 		t.Run("", func(t *testing.T) {
 			result := calculation.Variance(test.data)
-			if !almostEqual(result, test.expected) {
-				t.Errorf("Variance(%v) = %v; expected %v", test.data, result, test.expected)
+			if math.Abs(result-test.expected) > 1e-9 {
+				t.Errorf("got %v, want %v", result, test.expected)
 			}
 		})
 	}
-}
-
-func almostEqual(a, b float64) bool {
-	return math.Abs(a-b) < 1e-9
 }
 
 func TestStandardDeviation(t *testing.T) {
