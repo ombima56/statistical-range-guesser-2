@@ -80,3 +80,56 @@ func TestAverage(t *testing.T) {
 		})
 	}
 }
+
+func TestVariance(t *testing.T) {
+	tests := []struct {
+		data     []float64
+		expected float64
+	}{
+		{
+			data: []float64{1, 2, 3, 4, 5}, 
+			expected: 2.0,
+		},
+		{
+			data: []float64{5, 5, 5, 5, 5}, 
+			expected: 0.0,
+		},
+		{
+			data: []float64{1}, 
+			expected: 0.0,
+		},
+		{
+			data: []float64{}, 
+			expected: 0,
+		},
+		{
+			data: []float64{-1, -2, -3}, 
+			expected: 0.6666666666666666,
+		},
+		{
+			data: []float64{-1, 0, 1}, 
+			expected: 0.6666666666666666,
+		},
+		{
+			data: []float64{0, 0, 0, 0}, 
+			expected: 0.0,
+		},
+		{
+			data: []float64{1, 2, 3, 4, 5, 6}, 
+			expected: 2.9166666666666665,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run("", func(t *testing.T) {
+			result := calculation.Variance(test.data)
+			if !almostEqual(result, test.expected) {
+				t.Errorf("Variance(%v) = %v; expected %v", test.data, result, test.expected)
+			}
+		})
+	}
+}
+
+func almostEqual(a, b float64) bool {
+	return math.Abs(a-b) < 1e-9
+}
