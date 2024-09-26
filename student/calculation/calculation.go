@@ -21,7 +21,7 @@ func LinearRegression(data []float64) (slope, intercept float64) {
 	return
 }
 
-func average(data []float64) float64 {
+func Average(data []float64) float64 {
 	n := len(data)
 
 	if n == 0 {
@@ -36,10 +36,10 @@ func average(data []float64) float64 {
 	return sum / float64(n)
 }
 
-func variance(data []float64) (varianceVal float64) {
+func Variance(data []float64) (varianceVal float64) {
 	n := len(data)
 
-	av := average(data)
+	av := Average(data)
 
 	var sqrDiffSUm float64
 	for _, val := range data {
@@ -53,6 +53,6 @@ func variance(data []float64) (varianceVal float64) {
 }
 
 func StandardDeviation(data []float64) float64 {
-	v := variance(data)
+	v := Variance(data)
 	return math.Sqrt(v)
 }
